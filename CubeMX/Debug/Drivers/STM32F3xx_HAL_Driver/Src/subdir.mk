@@ -63,7 +63,7 @@ Drivers/STM32F3xx_HAL_Driver/Src/%.o: ../Drivers/STM32F3xx_HAL_Driver/Src/%.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo $(PWD)
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed="__attribute__((__packed__))"' -DUSE_HAL_DRIVER -DSTM32F303xE -I"/home/nils/Desktop/Fablab/Fablab_AUDO/CubeMX/Inc" -I"/home/nils/Desktop/Fablab/Fablab_AUDO/CubeMX/Drivers/STM32F3xx_HAL_Driver/Inc" -I"/home/nils/Desktop/Fablab/Fablab_AUDO/CubeMX/Drivers/STM32F3xx_HAL_Driver/Inc/Legacy" -I"/home/nils/Desktop/Fablab/Fablab_AUDO/CubeMX/Drivers/CMSIS/Device/ST/STM32F3xx/Include" -I"/home/nils/Desktop/Fablab/Fablab_AUDO/CubeMX/Drivers/CMSIS/Include"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed="__attribute__((__packed__))"' -DUSE_HAL_DRIVER -DSTM32F303xE -I"/home/nils/Desktop/Fablab/TUD-FabLab-RC-Audo-/CubeMX/Inc" -I"/home/nils/Desktop/Fablab/TUD-FabLab-RC-Audo-/CubeMX/Drivers/STM32F3xx_HAL_Driver/Inc" -I"/home/nils/Desktop/Fablab/TUD-FabLab-RC-Audo-/CubeMX/Drivers/STM32F3xx_HAL_Driver/Inc/Legacy" -I"/home/nils/Desktop/Fablab/TUD-FabLab-RC-Audo-/CubeMX/Drivers/CMSIS/Device/ST/STM32F3xx/Include" -I"/home/nils/Desktop/Fablab/TUD-FabLab-RC-Audo-/CubeMX/Drivers/CMSIS/Include"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

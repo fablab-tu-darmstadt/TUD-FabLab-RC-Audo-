@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include "stm32f3xx_hal.h"
 #include <stdio.h>
+#include "pwm.h"
 
 #define MAX_MSG_LENGTH 100
 #define MAXSPLITS 10
@@ -60,13 +61,17 @@ void parse()
 
 	if(strcmp(sstr.strs[0], "Servo") == 0 && sstr.cnt == 2)
 	{
-		int servo = atoi(sstr.strs[1]);
-
-		//char send[100];
-		sprintf(send, "Servo = %i",servo);
-
-		HAL_UART_Transmit(&huart2, (uint8_t*)send, strlen(send), 0xFFFF);
-
+		uint16_t servo = atoi(sstr.strs[1]);
+		set_steering(servo);
+		//sprintf(send, "Servo = %i",servo);
+		//HAL_UART_Transmit(&huart2, (uint8_t*)send, strlen(send), 0xFFFF);
+	}
+	else if(strcmp(sstr.strs[0], "Motor") == 0 && sstr.cnt == 2)
+	{
+		uint16_t motor = atoi(sstr.strs[1]);
+		set_motorlevel(motor);
+		//sprintf(send, "Motor = %i",motor);
+		//HAL_UART_Transmit(&huart2, (uint8_t*)send, strlen(send), 0xFFFF);
 	}
 }
 
