@@ -86,7 +86,7 @@ void comm_do()
 	{
 		msg[index++] = buffer[0];
 
-		HAL_UART_Transmit(&huart2, (uint8_t*)msg, index, 0xFFFF);
+		//HAL_UART_Transmit(&huart2, (uint8_t*)msg, index, 0xFFFF);
 		parse();
 		index = 0;
 	}

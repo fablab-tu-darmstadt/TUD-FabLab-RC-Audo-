@@ -54,7 +54,7 @@ void set_steering(uint16_t steer)
 	{
 		sprintf(msg, "Invalid value! %i to %i\n",MIN,MAX);
 	}
-	HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), 0xFFFF);
+	//HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), 0xFFFF);
 
 	//steering = steer;
 }
@@ -72,7 +72,7 @@ void set_motorlevel(uint16_t motor)
 	{
 		sprintf(msg, "Invalid value! %i to %i\n",MIN,MAX);
 	}
-	HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), 0xFFFF);
+	//HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), 0xFFFF);
 
 	//motorlevel = motor;
 }
