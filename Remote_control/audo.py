@@ -9,7 +9,7 @@ import time
 
 ser = serial.Serial('/dev/ttyACM0', 112500)
 ser.isOpen()
-print(ser.readline())
+#print(ser.readline())
 
 neutral_value = 18450
 max_value = 18900
@@ -21,7 +21,7 @@ keep_alive = time.time()
 servo_value = neutral_value
 motor_value = neutral_value
 
-ser.write('Servo 18750\n'.encode('utf-8'))
+ser.write('Servo 18500\n'.encode('utf-8'))
 #print(ser.readline())
 ser.write('Motor 18450\n'.encode('utf-8'))
 #print(ser.readline())
@@ -87,9 +87,6 @@ def get_values():
 	finally:
 		#print('Transmission complete')
 		done = True
-		
-
-
 
 while True:
 	get_values()
@@ -101,22 +98,4 @@ while True:
 		#print(ser.readline())
 		print("Timeout - Stopping AUDO")
 	time.sleep(0.02)
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
