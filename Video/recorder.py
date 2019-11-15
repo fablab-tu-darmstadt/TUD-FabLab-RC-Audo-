@@ -1,7 +1,7 @@
 from PIL import Image
 from select import select
+from sender import Sender
 from v4l2capture import Video_device
-import time
 
 sender = Sender()
 
@@ -18,4 +18,4 @@ while(True):
     select((video,), (), ())
 
     data = video.read_and_queue()
-    sender.push(data)
+    sender.put(data)
