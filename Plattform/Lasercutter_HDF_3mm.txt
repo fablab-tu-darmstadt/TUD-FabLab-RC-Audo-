@@ -1,0 +1,10 @@
+Lasercutter
+10% Speed
+20% Power
+2500Hz Frequenz
+
+
+
+17% Speed
+35% Power
+4000Hz Frequenz
