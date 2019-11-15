@@ -34,7 +34,6 @@ min_value = 18050
 servo_value = neutral_value
 motor_value = neutral_value
 
-
 while True:
 	# Wait for a connection
         print >>sys.stderr, 'waiting for a connection'
