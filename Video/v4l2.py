@@ -29,4 +29,4 @@ image_data = video.read()
 video.close()
 image = Image.frombytes("RGB", (size_x, size_y), image_data)
 image.save("image.jpg")
-print "Saved image.jpg (Size: " + str(size_x) + " x " + str(size_y) + ")"
+print("Saved image.jpg (Size: " + str(size_x) + " x " + str(size_y) + ")")
