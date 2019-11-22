@@ -14,7 +14,7 @@ def handler(signal_received, frame):
 signal(SIGINT, handler)
 
 address = ('chronosynclastic.de', 10001)
-print("starting on %s", address)
+print("starting on ", address)
 s.bind(address)
 
 # get incoming connections
