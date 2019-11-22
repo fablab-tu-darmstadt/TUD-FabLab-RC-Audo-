@@ -20,3 +20,16 @@ s.bind(address)
 # get incoming connections
 # get one from audo and one from laptop
 # special message from laptop -> send until laptop says stop
+
+start_message = "data please"
+stop_message = "bugger off"
+
+def init_laptop():
+    data, ip = s.recvfrom(512)
+    if data and start_message in data:
+        return ip
+    else:
+        print("could not initialize laptop connection")
+        exit(1)
+
+print("laptop ", init_laptop())
