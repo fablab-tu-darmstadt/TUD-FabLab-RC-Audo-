@@ -1,11 +1,21 @@
 from PIL import Image
 from select import select
 from sender import Sender
-from v4l2capture import Video_device
+import v4l2capture
+from sys import exit
+from signal import signal, SIGINT
+
+
+def handler(signal_received, frame):
+    print("BYE")
+    exit(0)
+
+
+signal(SIGINT, handler)
 
 sender = Sender()
 
-video = Video_device("/dev/video0")
+video = v4l2capture.Video_device("/dev/video0")
 size_x, size_y = video.set_format(1280, 720, fourcc='MJPG')
 video.create_buffers(30)
 video.queue_all_buffers()
