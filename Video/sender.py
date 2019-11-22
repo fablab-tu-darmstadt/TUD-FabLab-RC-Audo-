@@ -16,3 +16,6 @@ class Sender (Thread):
 
     def put(self, data):
         self.__queue.put(data)
+
+    def empty(self):
+        self.__queue.clear()
