@@ -6,14 +6,16 @@ from sys import exit
 from signal import signal, SIGINT
 
 
+sender = Sender()
+
+
 def handler(signal_received, frame):
+    sender.join()
     print("BYE")
     exit(0)
 
 
 signal(SIGINT, handler)
-
-sender = Sender()
 
 video = v4l2capture.Video_device("/dev/video0")
 size_x, size_y = video.set_format(1280, 720, fourcc='MJPG')
