@@ -4,12 +4,13 @@ from sender import Sender
 import v4l2capture
 from sys import exit
 from signal import signal, SIGINT
-
+from time import sleep
 
 sender = Sender()
 
 
 def handler(signal_received, frame):
+    sender.stop()
     sender.join()
     print("BYE")
     exit(0)
@@ -31,3 +32,5 @@ while(True):
 
     data = video.read_and_queue()
     sender.put(data)
+
+    sleep(0.05)

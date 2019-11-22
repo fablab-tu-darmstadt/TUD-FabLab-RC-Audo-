@@ -6,10 +6,11 @@ from sys import stdout
 class Sender (Thread):
     def __init__(self):
         self.__queue = Queue()
+        self.__running = True
         Thread.__init__(self)
 
     def run(self):
-        while(True):
+        while(self.__running):
             input = self.__queue.get()
             stdout.buffer.write(input)
             # send input to golosomie.de
@@ -17,5 +18,5 @@ class Sender (Thread):
     def put(self, data):
         self.__queue.put(data)
 
-    def empty(self):
-        self.__queue.clear()
+    def stop(self):
+        self.__running = False
