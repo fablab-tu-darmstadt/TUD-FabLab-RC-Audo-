@@ -2,7 +2,7 @@ import socket
 from sys import exit, stderr
 from signal import signal, SIGINT
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 
 def handler(signal_received, frame):

@@ -4,7 +4,7 @@ from signal import signal, SIGINT
 start_message = "data please"
 stop_message = "bugger off"
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 def handler(signal_received, frame):
     s.close()
