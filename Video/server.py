@@ -21,8 +21,8 @@ s.bind(address)
 # get one from audo and one from laptop
 # special message from laptop -> send until laptop says stop
 
-start_message = "data please"
-stop_message = "bugger off"
+start_message = "data please".encode()
+stop_message = "bugger off".encode()
 
 def init_laptop():
     data, ip = s.recvfrom(512)
