@@ -19,8 +19,8 @@ def handler(signal_received, frame):
 signal(SIGINT, handler)
 
 video = v4l2capture.Video_device("/dev/video0")
-size_x, size_y = video.set_format(1280, 720, fourcc='MJPG')
-video.create_buffers(30)
+size_x, size_y = video.set_format(480, 272, fourcc='MJPG')
+video.create_buffers(15)
 video.queue_all_buffers()
 
 sender.start()

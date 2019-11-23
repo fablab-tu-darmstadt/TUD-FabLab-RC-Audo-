@@ -22,7 +22,7 @@ s.bind(address)
 # special message from laptop -> send until laptop says stop
 
 start_message = "data please".encode()
-stop_message = "bugger off".encode()
+
 
 def init_laptop():
     data, ip = s.recvfrom(512)
@@ -31,5 +31,6 @@ def init_laptop():
     else:
         print("could not initialize laptop connection")
         exit(1)
+
 
 print("laptop ", init_laptop())

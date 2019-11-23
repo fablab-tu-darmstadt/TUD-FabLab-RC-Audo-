@@ -2,7 +2,6 @@ import socket
 from signal import signal, SIGINT
 
 start_message = "data please"
-stop_message = "bugger off"
 
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
