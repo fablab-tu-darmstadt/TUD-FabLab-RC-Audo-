@@ -16,3 +16,7 @@ signal(SIGINT, handler)
 address = ('chronosynclastic.de', 10001)
 
 s.sendto(start_message.encode(), address)
+
+data, ip = s.recvfrom(50000)
+
+print(data, "\n", ip)
