@@ -96,13 +96,13 @@ def get_values():
 				#print(ser.readline())
 			#time.sleep(0.01)
 			if message[4] == "Gummi":
-				gummi_value = int(message[3])
+				gummi_value = int(message[5])
 				send_str = "Gummi " + str(gummi_value) + "\n" 
 				ser.write(send_str.encode('utf-8'))
 				#print(ser.readline())
 			#time.sleep(0.01)
 			if message[6] == "Flyer":
-				flyer_value = int(message[3])
+				flyer_value = int(message[7])
 				send_str = "Flyer " + str(flyer_value) + "\n" 
 				ser.write(send_str.encode('utf-8'))
 				#print(ser.readline())
