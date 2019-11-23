@@ -14,11 +14,19 @@
 #define GUMMI_OPEN 1890
 #define GUMMI_CLOSED 920
 
+#define MIEZ_HIGH 600
+#define MIEZ_LOW 2500
+#define MIEZ_HORIZONTAL 1100
+
 
 uint16_t steering;
 uint16_t motorlevel;
 uint16_t flyer_value;
 uint16_t gummi_value;
+
+uint16_t miez_value;
+uint8_t miez_state = 0;
+uint16_t miez_increment = 1;
 
 UART_HandleTypeDef huart2;
 
@@ -36,6 +44,7 @@ void pwm_init()
 	motorlevel = NEUTRAL;
 	flyer_value = FLYER_CLOSED;
 	gummi_value = GUMMI_CLOSED;
+	miez_value = MIEZ_HORIZONTAL;
 
 	//TIM3->CR1 |= TIM_CR1_CEN;
 
@@ -43,6 +52,11 @@ void pwm_init()
 	TIM3->CCR2 = motorlevel;
 	TIM3->CCR3 = flyer_value;
 	TIM3->CCR4 = gummi_value;
+
+	TIM2->CCR1 = 1500;
+	TIM2->CCR2 = 1500;
+	TIM2->CCR3 = miez_value;
+	TIM2->CCR4 = 1500;
 
 }
 
@@ -52,6 +66,37 @@ void pwm_do()
 	TIM3->CCR2 = motorlevel;
 	TIM3->CCR3 = flyer_value;
 	TIM3->CCR4 = gummi_value;
+
+	TIM2->CCR1 = 1500;
+	TIM2->CCR2 = 1500;
+	TIM2->CCR3 = miez_value;
+	TIM2->CCR4 = 1500;
+
+	if(miez_state == 0)
+	{
+		// Arm moves down
+		if(miez_value == MIEZ_LOW)
+		{
+			miez_state = 1;
+		}
+		else
+		{
+			miez_value += miez_increment;
+		}
+	}
+	else
+	{
+		// Arm moves up
+		if(miez_value == MIEZ_HIGH)
+		{
+			miez_state = 0;
+		}
+		else
+		{
+			miez_value -= miez_increment;
+		}
+	}
+
 }
 
 void set_steering(uint16_t steer)
