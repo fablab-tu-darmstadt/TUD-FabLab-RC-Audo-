@@ -9,7 +9,7 @@ import time
 
 ser = serial.Serial('/dev/ttyACM0', 112500)
 ser.isOpen()
-print(ser.readline())
+#print(ser.readline())
 
 neutral_value = 18450
 max_value = 18900
@@ -133,21 +133,4 @@ while True:
 		print("Timeout - Stopping AUDO")
 	time.sleep(0.1)
 	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
