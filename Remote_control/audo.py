@@ -94,12 +94,14 @@ def get_values():
 				send_str = "Motor " + str(motor_value) + "\n" 
 				ser.write(send_str.encode('utf-8'))
 				#print(ser.readline())
-			if message[2] == "Gummi":
+			#time.sleep(0.01)
+			if message[4] == "Gummi":
 				gummi_value = int(message[3])
 				send_str = "Gummi " + str(gummi_value) + "\n" 
 				ser.write(send_str.encode('utf-8'))
 				#print(ser.readline())
-			if message[2] == "Flyer":
+			#time.sleep(0.01)
+			if message[6] == "Flyer":
 				flyer_value = int(message[3])
 				send_str = "Flyer " + str(flyer_value) + "\n" 
 				ser.write(send_str.encode('utf-8'))
