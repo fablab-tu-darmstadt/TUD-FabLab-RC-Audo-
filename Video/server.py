@@ -24,14 +24,16 @@ frame = "".encode()
 valid = False
 
 while True:
-    data, ip = s.recvfrom(2048)
+    data, ip = s.recvfrom(50000)
     if data:
         if laptop_request in data:
+            print("Laptop requested")
             if valid:
                 s.sendto(frame, ip)
                 valid = False
             else:
                 s.sendto(invalid, ip)
         else:
+            print("Audo provided")
             frame = data
             valid = True

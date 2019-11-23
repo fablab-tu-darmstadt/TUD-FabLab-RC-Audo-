@@ -10,6 +10,7 @@ class Sender (Thread):
         self.__queue = Queue()
         self.__running = True
         self.__socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        self.__address = ('chronosynclastic.de', 10001)
         Thread.__init__(self)
 
     def run(self):
@@ -17,7 +18,8 @@ class Sender (Thread):
             input = self.__queue.get()
             # stdout.buffer.write(input)
             # send input to golosomie.de
-            print(getsizeof(input), "\n")
+            # print(getsizeof(input), "\n") # 40609 war max
+            self.__socket.sendto(input, self.__address)
 
     def put(self, data):
         self.__queue.put(data)
