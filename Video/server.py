@@ -17,20 +17,21 @@ address = ('chronosynclastic.de', 10001)
 print("starting on ", address)
 s.bind(address)
 
-# get incoming connections
-# get one from audo and one from laptop
-# special message from laptop -> send until laptop says stop
+laptop_request = "data please".encode()
 
-start_message = "data please".encode()
+invalid = "invalid".encode()
+frame = "".encode()
+valid = False
 
-
-def init_laptop():
-    data, ip = s.recvfrom(512)
-    if data and start_message in data:
-        return ip
-    else:
-        print("could not initialize laptop connection")
-        exit(1)
-
-
-print("laptop ", init_laptop())
+while True:
+    data, ip = s.recvfrom(2048)
+    if data:
+        if laptop_request in data:
+            if valid:
+                s.sendto(frame, ip)
+                valid = False
+            else:
+                s.sendto(invalid, ip)
+        else:
+            frame = data
+            valid = True
