@@ -4,7 +4,6 @@ from sender import Sender
 import v4l2capture
 from sys import exit
 from signal import signal, SIGINT
-from time import sleep
 
 sender = Sender()
 
@@ -20,7 +19,8 @@ signal(SIGINT, handler)
 
 video = v4l2capture.Video_device("/dev/video0")
 size_x, size_y = video.set_format(480, 272, fourcc='MJPG')
-video.create_buffers(15)
+fps = video.set_fps(15)
+video.create_buffers(30)
 video.queue_all_buffers()
 
 sender.start()
@@ -32,5 +32,3 @@ while(True):
 
     data = video.read_and_queue()
     sender.put(data)
-
-    sleep(0.05)
