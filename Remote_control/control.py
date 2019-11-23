@@ -10,13 +10,21 @@ neutral_value = 18450
 max_value = 18900
 min_value = 18050
 
+gummi_open = 1890
+gummi_closed = 920
+
+flyer_open = 1800
+flyer_closed = 560
+
+
 servo_value = neutral_value
 motor_value = neutral_value
-
+gummi_value = gummi_closed
+flyer_value = flyer_closed
 
 window = tkinter.Tk()
 window.title("AUDO Control")
-window.geometry('320x160')
+window.geometry('360x240')
 
 motor_label = tkinter.Label(window, text="Motor: 0")
 motor_label.grid(column=0, row=2)
@@ -90,6 +98,38 @@ def stop():
 btn_stop = tkinter.Button(window, text="Stop", bg="orange", fg="red", command=stop, padx=20, pady=8)
 btn_stop.grid(column=5, row=4)
 
+def gummi_open():
+	global gummi_value
+	gummi_value = gummi_open
+	set_gummi()
+
+btn_gummi_open = tkinter.Button(window, text="GOPEN", bg="orange", fg="red", command=gummi_open, padx=20, pady=8)
+btn_gummi_open.grid(column=4, row=6)
+
+def gummi_close():
+	global gummi_value
+	gummi_value = gummi_closed
+	set_gummi()
+
+btn_gummi_close = tkinter.Button(window, text="GCLOSE", bg="orange", fg="red", command=gummi_close, padx=20, pady=8)
+btn_gummi_close.grid(column=6, row=6)
+
+def flyer_open():
+	global flyer_value
+	flyer_value = flyer_open
+	set_flyer()
+
+btn_flyer_open = tkinter.Button(window, text="FOPEN", bg="orange", fg="red", command=flyer_open, padx=20, pady=8)
+btn_flyer_open.grid(column=4, row=7)
+
+def flyer_close():
+	global flyer_value
+	flyer_value = flyer_closed
+	set_flyer()
+
+btn_flyer_close = tkinter.Button(window, text="FCLOSE", bg="orange", fg="red", command=flyer_close, padx=20, pady=8)
+btn_flyer_close.grid(column=6, row=7)
+
 
 
 
@@ -142,6 +182,39 @@ def set_motor():
 	finally:
 		#print('Transmission complete')
 		done = True
+
+def set_gummi():
+	try:
+		# Send data
+		send_message = 'control gummi ' + str(gummi_value)
+		#print('sending')
+		sock.sendto(send_message.encode(), server_address)
+		# Look for the response
+		#print("receiving")
+		data, client_ip = sock.recvfrom(512)		
+		print(data.decode())
+	except socket.timeout:
+		print("timeout")
+	finally:
+		#print('Transmission complete')
+		done = True
+
+def set_flyer():
+	try:
+		# Send data
+		send_message = 'control flyer ' + str(flyer_value)
+		#print('sending')
+		sock.sendto(send_message.encode(), server_address)
+		# Look for the response
+		#print("receiving")
+		data, client_ip = sock.recvfrom(512)		
+		print(data.decode())
+	except socket.timeout:
+		print("timeout")
+	finally:
+		#print('Transmission complete')
+		done = True
+
 
 window.mainloop()
 sock.close()

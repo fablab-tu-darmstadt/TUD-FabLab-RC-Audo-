@@ -670,4 +670,174 @@ Text Label 4300 3300 2    50   ~ 0
 5V
 Text Label 4300 3400 2    50   ~ 0
 5V
+Text Label 8500 1250 0    50   ~ 0
+In10
+Text Label 7750 1250 0    50   ~ 0
+In9
+Text Label 7000 1250 0    50   ~ 0
+In8
+Text Label 6250 1250 0    50   ~ 0
+In7
+Text Label 5500 1250 0    50   ~ 0
+In6
+Text Label 4750 1250 0    50   ~ 0
+In5
+Text Label 4000 1250 0    50   ~ 0
+In4
+Text Label 3250 1250 0    50   ~ 0
+In3
+Text Label 2500 1250 0    50   ~ 0
+In2
+Text Label 1750 1250 0    50   ~ 0
+In1
+$Comp
+L Connector_Generic:Conn_01x02 J13
+U 1 1 5DD63C15
+P 1800 2250
+F 0 "J13" H 1880 2292 50  0000 L CNN
+F 1 "V_IN_1" H 1880 2201 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 1800 2250 50  0001 C CNN
+F 3 "~" H 1800 2250 50  0001 C CNN
+	1    1800 2250
+	1    0    0    -1  
+$EndComp
+Text Label 1600 2350 2    50   ~ 0
+GND
+Text Label 1600 2250 2    50   ~ 0
+In1
+$Comp
+L Connector_Generic:Conn_01x02 J14
+U 1 1 5DD6490F
+P 1800 2550
+F 0 "J14" H 1880 2592 50  0000 L CNN
+F 1 "V_IN_2" H 1880 2501 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 1800 2550 50  0001 C CNN
+F 3 "~" H 1800 2550 50  0001 C CNN
+	1    1800 2550
+	1    0    0    -1  
+$EndComp
+Text Label 1600 2650 2    50   ~ 0
+GND
+Text Label 1600 2550 2    50   ~ 0
+In2
+$Comp
+L Connector_Generic:Conn_01x02 J15
+U 1 1 5DD655A6
+P 1800 2850
+F 0 "J15" H 1880 2892 50  0000 L CNN
+F 1 "V_IN_3" H 1880 2801 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 1800 2850 50  0001 C CNN
+F 3 "~" H 1800 2850 50  0001 C CNN
+	1    1800 2850
+	1    0    0    -1  
+$EndComp
+Text Label 1600 2950 2    50   ~ 0
+GND
+Text Label 1600 2850 2    50   ~ 0
+In3
+$Comp
+L Connector_Generic:Conn_01x02 J16
+U 1 1 5DD66130
+P 1800 3150
+F 0 "J16" H 1880 3192 50  0000 L CNN
+F 1 "V_IN_4" H 1880 3101 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 1800 3150 50  0001 C CNN
+F 3 "~" H 1800 3150 50  0001 C CNN
+	1    1800 3150
+	1    0    0    -1  
+$EndComp
+Text Label 1600 3250 2    50   ~ 0
+GND
+Text Label 1600 3150 2    50   ~ 0
+In4
+$Comp
+L Connector_Generic:Conn_01x02 J17
+U 1 1 5DD6AA45
+P 1800 3450
+F 0 "J17" H 1880 3492 50  0000 L CNN
+F 1 "V_IN_5" H 1880 3401 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 1800 3450 50  0001 C CNN
+F 3 "~" H 1800 3450 50  0001 C CNN
+	1    1800 3450
+	1    0    0    -1  
+$EndComp
+Text Label 1600 3550 2    50   ~ 0
+GND
+Text Label 1600 3450 2    50   ~ 0
+In5
+$Comp
+L Connector_Generic:Conn_01x02 J18
+U 1 1 5DD6F75B
+P 1800 3750
+F 0 "J18" H 1880 3792 50  0000 L CNN
+F 1 "V_IN_6" H 1880 3701 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 1800 3750 50  0001 C CNN
+F 3 "~" H 1800 3750 50  0001 C CNN
+	1    1800 3750
+	1    0    0    -1  
+$EndComp
+Text Label 1600 3850 2    50   ~ 0
+GND
+Text Label 1600 3750 2    50   ~ 0
+In6
+$Comp
+L Connector_Generic:Conn_01x02 J19
+U 1 1 5DD6F763
+P 1800 4050
+F 0 "J19" H 1880 4092 50  0000 L CNN
+F 1 "V_IN_7" H 1880 4001 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 1800 4050 50  0001 C CNN
+F 3 "~" H 1800 4050 50  0001 C CNN
+	1    1800 4050
+	1    0    0    -1  
+$EndComp
+Text Label 1600 4150 2    50   ~ 0
+GND
+Text Label 1600 4050 2    50   ~ 0
+In7
+$Comp
+L Connector_Generic:Conn_01x02 J20
+U 1 1 5DD6F76B
+P 1800 4350
+F 0 "J20" H 1880 4392 50  0000 L CNN
+F 1 "V_IN_8" H 1880 4301 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 1800 4350 50  0001 C CNN
+F 3 "~" H 1800 4350 50  0001 C CNN
+	1    1800 4350
+	1    0    0    -1  
+$EndComp
+Text Label 1600 4450 2    50   ~ 0
+GND
+Text Label 1600 4350 2    50   ~ 0
+In8
+$Comp
+L Connector_Generic:Conn_01x02 J21
+U 1 1 5DD6F773
+P 1800 4650
+F 0 "J21" H 1880 4692 50  0000 L CNN
+F 1 "V_IN_9" H 1880 4601 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 1800 4650 50  0001 C CNN
+F 3 "~" H 1800 4650 50  0001 C CNN
+	1    1800 4650
+	1    0    0    -1  
+$EndComp
+Text Label 1600 4750 2    50   ~ 0
+GND
+Text Label 1600 4650 2    50   ~ 0
+In9
+$Comp
+L Connector_Generic:Conn_01x02 J22
+U 1 1 5DD6F77B
+P 1800 4950
+F 0 "J22" H 1880 4992 50  0000 L CNN
+F 1 "V_IN_10" H 1880 4901 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 1800 4950 50  0001 C CNN
+F 3 "~" H 1800 4950 50  0001 C CNN
+	1    1800 4950
+	1    0    0    -1  
+$EndComp
+Text Label 1600 5050 2    50   ~ 0
+GND
+Text Label 1600 4950 2    50   ~ 0
+In10
 $EndSCHEMATC

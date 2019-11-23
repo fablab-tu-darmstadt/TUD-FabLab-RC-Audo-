@@ -73,6 +73,23 @@ void parse()
 		//sprintf(send, "Motor = %i",motor);
 		//HAL_UART_Transmit(&huart2, (uint8_t*)send, strlen(send), 0xFFFF);
 	}
+	else if(strcmp(sstr.strs[0], "Flyer") == 0 && sstr.cnt == 2)
+	{
+		uint16_t flyer = atoi(sstr.strs[1]);
+		set_gummi(flyer);
+
+	}
+	else if(strcmp(sstr.strs[0], "Gummi") == 0 && sstr.cnt == 2)
+	{
+		uint16_t gummi = atoi(sstr.strs[1]);
+		set_flyer(gummi);
+
+	}
+	else
+	{
+		sprintf(send, "I do not understand!");
+		HAL_UART_Transmit(&huart2, (uint8_t*)send, strlen(send), 0xFFFF);
+	}
 }
 
 void comm_do()

@@ -300,16 +300,28 @@ static void MX_TIM3_Init(void)
   {
     Error_Handler();
   }
+  if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
+    {
+      Error_Handler();
+    }
+  if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
+    {
+      Error_Handler();
+    }
   /* USER CODE END TIM3_Init 2 */
   HAL_TIM_MspPostInit(&htim3);
 
-  TIM3->CCR1 = 1500;
-  TIM3->CCR2 = 1500;
+  TIM3->CCR1 = 18450;
+  TIM3->CCR2 = 18450;
+  TIM3->CCR3 = 1500;
+  TIM3->CCR4 = 1500;
 
   HAL_TIM_Base_Start(&htim3);
 
   HAL_TIM_OC_Start(&htim3, TIM_CHANNEL_1);
   HAL_TIM_OC_Start(&htim3, TIM_CHANNEL_2);
+  HAL_TIM_OC_Start(&htim3, TIM_CHANNEL_3);
+  HAL_TIM_OC_Start(&htim3, TIM_CHANNEL_4);
 
 
 }

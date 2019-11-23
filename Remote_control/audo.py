@@ -17,14 +17,26 @@ min_value = 18050
 timeout_value = 5
 keep_alive = time.time()
 
+gummi_open = 1890
+gummi_closed = 920
+
+flyer_open = 1800
+flyer_closed = 560
+
+
 
 servo_value = neutral_value
 motor_value = neutral_value
+gummi_value = gummi_closed
+flyer_value = flyer_closed
 
-ser.write('Servo 18750\n'.encode('utf-8'))
+
+ser.write('Servo 18450\n'.encode('utf-8'))
 #print(ser.readline())
 ser.write('Motor 18450\n'.encode('utf-8'))
 #print(ser.readline())
+ser.write('Gummi 920\n'.encode('utf-8'))
+ser.write('Flyer 560\n'.encode('utf-8'))
 
 # Create a UDP socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -40,7 +52,10 @@ def handler(signal_received, frame):
     # Handle any cleanup here
 	
 	sock.close()
-	ser.write('Servo 18250\n'.encode('utf-8'))
+	ser.write('Servo 18450\n'.encode('utf-8'))
+	ser.write('Motor 18450\n'.encode('utf-8'))
+	ser.write('Gummi 920\n'.encode('utf-8'))
+	ser.write('Flyer 560\n'.encode('utf-8'))
 	#print(ser.readline())
 	ser.close()
 	print('SIGINT or CTRL-C detected. Exiting gracefully')
@@ -53,6 +68,8 @@ def get_values():
 	global keep_alive
 	global servo_value
 	global motor_value
+	global gummi_value
+	global flyer_value
 	try:
 		# Send data
 		#print('sending')
@@ -64,17 +81,27 @@ def get_values():
 		#print(data)
 		message = data.decode().split(" ")
 		print(message)
-		if len(message) == 4:
+		if len(message) == 8:
 			if message[0] == "Servo":
 				servo_value = int(message[1])
 				send_str = "Servo " + str(servo_value) + "\n" 
 				#print(send_str)
 				ser.write(send_str.encode('utf-8'))
 				#print(ser.readline())
-			time.sleep(0.01)
+			#time.sleep(0.01)
 			if message[2] == "Motor":
 				motor_value = int(message[3])
 				send_str = "Motor " + str(motor_value) + "\n" 
+				ser.write(send_str.encode('utf-8'))
+				#print(ser.readline())
+			if message[2] == "Gummi":
+				gummi_value = int(message[3])
+				send_str = "Gummi " + str(gummi_value) + "\n" 
+				ser.write(send_str.encode('utf-8'))
+				#print(ser.readline())
+			if message[2] == "Flyer":
+				flyer_value = int(message[3])
+				send_str = "Flyer " + str(flyer_value) + "\n" 
 				ser.write(send_str.encode('utf-8'))
 				#print(ser.readline())
 	except socket.timeout:
@@ -82,6 +109,8 @@ def get_values():
 		#print(ser.readline())
 		ser.write('Motor 18450\n'.encode('utf-8'))
 		#print(ser.readline())
+		ser.write('Gummi 920\n'.encode('utf-8'))
+		ser.write('Flyer 560\n'.encode('utf-8'))	
 		print("Timeout - Stopping AUDO")
 
 	finally:
@@ -99,8 +128,10 @@ while True:
 		#print(ser.readline())
 		ser.write('Motor 18450\n'.encode('utf-8'))
 		#print(ser.readline())
+		ser.write('Gummi 920\n'.encode('utf-8'))
+		ser.write('Flyer 560\n'.encode('utf-8'))	
 		print("Timeout - Stopping AUDO")
-	time.sleep(0.02)
+	time.sleep(0.1)
 	
 
 
