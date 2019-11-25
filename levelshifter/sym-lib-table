@@ -1,4 +1,0 @@
-(sym_lib_table
-  (lib (name dk_Transistors-FETs-MOSFETs-Single)(type Legacy)(uri ${KIPRJMOD}/digikey-kicad-library-master/digikey-symbols/dk_Transistors-FETs-MOSFETs-Single.lib)(options "")(descr ""))
-  (lib (name Custom)(type Legacy)(uri ${KIPRJMOD}/custom.lib)(options "")(descr ""))
-)
