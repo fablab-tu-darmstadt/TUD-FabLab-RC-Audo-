@@ -33,11 +33,12 @@ gummi_closed = 920
 flyer_open = 1800
 flyer_closed = 560
 
+
 servo_value = neutral_value
 motor_value = neutral_value
 gummi_value = gummi_closed
 flyer_value = flyer_closed
-
+job_value = 0
 
 # Receive the data in small chunks and retransmit it
 while True:
@@ -46,8 +47,10 @@ while True:
 	if data:
 		message = data.split(" ")
 		if message[0] == "audo":
-			mess = "Servo " + str(servo_value) + " Motor " + str(motor_value) + " Gummi " + str(gummi_value) + " Flyer " + str(flyer_value)
+			mess = "Servo " + str(servo_value) + " Motor " + str(motor_value) + " Gummi " + str(gummi_value) + " Flyer " + str(flyer_value) + " Job " + str(job_value)
 			sock.sendto(mess, client_ip)
+			if(job_value != 0):
+				job_value = 0
 		elif message[0] == "control":
 			sock.sendto(message[1],client_ip)
 			if message[1] == "servo":
@@ -58,6 +61,8 @@ while True:
 				gummi_value = int(message[2])
 			elif message[1] == "flyer":
 				flyer_value = int(message[2])
+			elif message[1] == "job":
+				job_value = int(message[2])
             	else:
 			break
 

@@ -21,10 +21,11 @@ servo_value = neutral_value
 motor_value = neutral_value
 gummi_value = gummi_closed
 flyer_value = flyer_closed
+job_value = 0
 
 window = tkinter.Tk()
 window.title("AUDO Control")
-window.geometry('360x240')
+window.geometry('360x300')
 
 motor_label = tkinter.Label(window, text="Motor: 0")
 motor_label.grid(column=0, row=2)
@@ -130,7 +131,45 @@ def flyer_close():
 btn_flyer_close = tkinter.Button(window, text="FCLOSE", bg="orange", fg="red", command=flyer_close, padx=20, pady=8)
 btn_flyer_close.grid(column=6, row=7)
 
+def job_forward():
+	global job_value
+	job_value = 1
+	set_job()
 
+btn_job_forward = tkinter.Button(window, text="Forward", bg="orange", fg="red", command=job_forward, padx=20, pady=8)
+btn_job_forward.grid(column=4, row=8)
+
+def job_backward():
+	global job_value
+	job_value = 2
+	set_job()
+
+btn_job_backward = tkinter.Button(window, text="Backward", bg="orange", fg="red", command=job_backward, padx=20, pady=8)
+btn_job_backward.grid(column=4, row=9)
+
+def job_right():
+	global job_value
+	job_value = 3
+	set_job()
+
+btn_job_right = tkinter.Button(window, text="Right 90", bg="orange", fg="red", command=job_right, padx=20, pady=8)
+btn_job_right.grid(column=6, row=8)
+
+def job_left():
+	global job_value
+	job_value = 4
+	set_job()
+
+btn_job_left = tkinter.Button(window, text="Left 90", bg="orange", fg="red", command=job_left, padx=20, pady=8)
+btn_job_left.grid(column=6, row=9)
+
+def job_circle():
+	global job_value
+	job_value = 5
+	set_job()
+
+btn_job_circle = tkinter.Button(window, text="Circle", bg="orange", fg="red", command=job_circle, padx=20, pady=8)
+btn_job_circle.grid(column=5, row=8)
 
 
 # Create a UDP socket
@@ -203,6 +242,22 @@ def set_flyer():
 	try:
 		# Send data
 		send_message = 'control flyer ' + str(flyer_value)
+		#print('sending')
+		sock.sendto(send_message.encode(), server_address)
+		# Look for the response
+		#print("receiving")
+		data, client_ip = sock.recvfrom(512)		
+		print(data.decode())
+	except socket.timeout:
+		print("timeout")
+	finally:
+		#print('Transmission complete')
+		done = True
+
+def set_job():
+	try:
+		# Send data
+		send_message = 'control job ' + str(job_value)
 		#print('sending')
 		sock.sendto(send_message.encode(), server_address)
 		# Look for the response
