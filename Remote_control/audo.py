@@ -23,6 +23,8 @@ gummi_closed = 920
 flyer_open = 1800
 flyer_closed = 560
 
+job_state = 0
+job_progress = 0
 
 
 servo_value = neutral_value
@@ -70,6 +72,13 @@ def get_values():
 	global motor_value
 	global gummi_value
 	global flyer_value
+	global ser
+	global job_state
+	global job_progress
+	ser_open = ser.isOpen()
+	print(ser_open)
+	if(ser_open == False):
+		ser.open()
 	try:
 		# Send data
 		#print('sending')
@@ -81,31 +90,40 @@ def get_values():
 		#print(data)
 		message = data.decode().split(" ")
 		print(message)
-		if len(message) == 8:
+		if len(message) == 10:
 			if message[0] == "Servo":
 				servo_value = int(message[1])
 				send_str = "Servo " + str(servo_value) + "\n" 
 				#print(send_str)
-				ser.write(send_str.encode('utf-8'))
+				if(job_state == 0):
+					ser.write(send_str.encode('utf-8'))
 				#print(ser.readline())
 			#time.sleep(0.01)
 			if message[2] == "Motor":
 				motor_value = int(message[3])
 				send_str = "Motor " + str(motor_value) + "\n" 
-				ser.write(send_str.encode('utf-8'))
+				if(job_state == 0):
+					ser.write(send_str.encode('utf-8'))
 				#print(ser.readline())
 			#time.sleep(0.01)
 			if message[4] == "Gummi":
 				gummi_value = int(message[5])
-				send_str = "Gummi " + str(gummi_value) + "\n" 
+				send_str = "Gummi " + str(gummi_value) + "\n"
 				ser.write(send_str.encode('utf-8'))
 				#print(ser.readline())
 			#time.sleep(0.01)
 			if message[6] == "Flyer":
 				flyer_value = int(message[7])
-				send_str = "Flyer " + str(flyer_value) + "\n" 
+				send_str = "Flyer " + str(flyer_value) + "\n"
 				ser.write(send_str.encode('utf-8'))
 				#print(ser.readline())
+			if message[8] == "Job":
+				if(job_state == 0):
+					job_state = int(message[9])
+					if(job_state == 5):
+						job_progress = 30
+					else:
+						job_progress = 7
 	except socket.timeout:
 		ser.write('Servo 18750\n'.encode('utf-8'))
 		#print(ser.readline())
@@ -114,7 +132,8 @@ def get_values():
 		ser.write('Gummi 920\n'.encode('utf-8'))
 		ser.write('Flyer 560\n'.encode('utf-8'))	
 		print("Timeout - Stopping AUDO")
-
+	except:
+		pass
 	finally:
 		#print('Transmission complete')
 		done = True
@@ -124,6 +143,57 @@ def get_values():
 
 while True:
 	get_values()
+	if(job_state == 2):
+		#backward
+		if(job_progress == 0):
+			job_state = 0
+			ser.write('Servo 18450\n'.encode('utf-8'))
+			ser.write('Motor 18450\n'.encode('utf-8'))
+		else:
+			ser.write('Servo 18450\n'.encode('utf-8'))
+			ser.write('Motor 18700\n'.encode('utf-8'))
+			job_progress -= 1
+	elif(job_state == 1):
+		#forward
+		if(job_progress == 0):
+			job_state = 0
+			ser.write('Servo 18450\n'.encode('utf-8'))
+			ser.write('Motor 18450\n'.encode('utf-8'))
+		else:
+			ser.write('Servo 18450\n'.encode('utf-8'))
+			ser.write('Motor 18325\n'.encode('utf-8'))
+			job_progress -= 1
+	elif(job_state == 3):
+		#right 90??
+		if(job_progress == 0):
+			job_state = 0
+			ser.write('Servo 18450\n'.encode('utf-8'))
+			ser.write('Motor 18450\n'.encode('utf-8'))
+		else:
+			ser.write('Servo 18900\n'.encode('utf-8'))
+			ser.write('Motor 18300\n'.encode('utf-8'))
+			job_progress -= 1
+	elif(job_state == 4):
+		#left 90??
+		if(job_progress == 0):
+			job_state = 0
+			ser.write('Servo 18450\n'.encode('utf-8'))
+			ser.write('Motor 18450\n'.encode('utf-8'))
+		else:
+			ser.write('Servo 18050\n'.encode('utf-8'))
+			ser.write('Motor 18300\n'.encode('utf-8'))
+			job_progress -= 1
+	elif(job_state == 5):
+		#circle for 30s
+		if(job_progress == 0):
+			job_state = 0
+			ser.write('Servo 18450\n'.encode('utf-8'))
+			ser.write('Motor 18450\n'.encode('utf-8'))
+		else:
+			ser.write('Servo 18050\n'.encode('utf-8'))
+			ser.write('Motor 18300\n'.encode('utf-8'))
+			job_progress -= 1
+	
 	#print(time.time() - keep_alive)
 	if timeout_value < (time.time() - keep_alive):
 		ser.write('Servo 18450\n'.encode('utf-8'))
