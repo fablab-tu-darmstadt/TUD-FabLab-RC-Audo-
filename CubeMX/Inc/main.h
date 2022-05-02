@@ -60,6 +60,12 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define PC7_RF_RESET_Pin GPIO_PIN_7
+#define PC7_RF_RESET_GPIO_Port GPIOC
+#define PA9_EXTI9_RF_RX_DONE_Pin GPIO_PIN_9
+#define PA9_EXTI9_RF_RX_DONE_GPIO_Port GPIOA
+#define PB6_SPI1_NSS_RF_Pin GPIO_PIN_6
+#define PB6_SPI1_NSS_RF_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
@@ -69,5 +75,3 @@ void Error_Handler(void);
 #endif
 
 #endif /* __MAIN_H */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
